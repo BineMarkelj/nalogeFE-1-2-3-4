@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+		.box {
+		  border: 1px solid black;
+		  margin: 10px;
+		  float: left;
+		  padding: 30px;
+		  text-align: center;
+		  background-color: lightgray;
+		}
+
+		.databox {
+			display: flex;
+			justify-content: center;
+			margin-top: 50px;
+
+		}
+
+		
+	</style>
+
+
+	
+
+	<div class="div-el" id="element1" style="background-color: red;"> <h2>element1</h2>
+		<div id="element2" style="background-color: green; margin-left: 30px;"> <h2>element2</h2> 
+			<div id="element3" style="background-color: blue; margin-left: 30px;"> <h2>element3</h2>
+			</div> 
+		</div> 
+	</div>
+
+	<div id="showData" class="databox">
+		<div class="box">
+			<h1>Mouse-event log:</h1>
+			<h2>Position: </h2><p id="position-result">-</p>
+			<h3>X-axis:</h3><p id="x-result">-</p>
+			<h3>Y-axis:</h3><p id="y-result">-</p>
+			<h3>Type:</h3><p id="type-result">-</p>
+		</div>
+	</div>
+
+	<script>
+
+		var div1 = document.getElementById("element1");
+		var div2 = document.getElementById("element2");
+		var div3 = document.getElementById("element3");		
+
+
+		document.addEventListener('mousemove', function(e){
+				console.log("Mouse is within element1, details: ", e);
+				
+				document.getElementById("x-result").innerHTML = e.x;
+				document.getElementById("y-result").innerHTML = e.y; 
+				document.getElementById("type-result").innerHTML = "mousemove";
+			})
+
+			var lock = false;
+			
+
+			div1.addEventListener('mouseover', function(e){
+				if (!lock) {document.getElementById("position-result").innerHTML = "element1";}
+			})
+			div1.addEventListener('mouseout', function(e){
+				document.getElementById("position-result").innerHTML = "-";
+			})
+
+
+
+
+			div2.addEventListener('mouseover', function(e){
+				if (!lock) {document.getElementById("position-result").innerHTML = "element1>element2";}
+				lock = true;
+			})
+			div2.addEventListener('mouseout', function(e){
+				document.getElementById("position-result").innerHTML = "-";
+				lock = false;
+			})
+
+
+
+
+			div3.addEventListener('mouseover', function(e){
+				document.getElementById("position-result").innerHTML = "element1>element2>element3";
+				lock = true;
+			})
+			div3.addEventListener('mouseout', function(e){
+				document.getElementById("position-result").innerHTML = "-";
+				lock = false;
+			})
+
+
+
+
+			document.addEventListener('mousedown', function(e){
+				document.getElementById("type-result").innerHTML = "mousedown";
+			})
+
+
+			document.addEventListener('click', function(e){
+				document.getElementById("type-result").innerHTML = "click";
+			})
+
+	</script>
+
+</body>
+</html>
