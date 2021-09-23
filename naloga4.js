@@ -1,4 +1,3 @@
-// nevem, če sem na pravilen način razumel nalogo, lahko popravim
 
     var object = {
         both : function(txt1, txt2){
